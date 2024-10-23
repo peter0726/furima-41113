@@ -2,16 +2,16 @@
 
 
 ## users テーブル
-| Column                | Type    | Options     |
-| --------------------- | ------- | ----------- |
-| nickname              | string  | null: false |
-| email                 | string  | null: false |
-| encrypted_password    | string  | null: false |
-| last_name_kanji       | string  | null: false |
-| first_name_kanji      | string  | null: false |
-| last_name_kana        | string  | null: false |
-| first_name_kana       | string  | null: false |
-| birth_day             | date    | null: false |
+| Column                | Type    | Options      |
+| --------------------- | ------- | -----------  |
+| nickname              | string  | null: false  |
+| email                 | string  | unique: true |
+| encrypted_password    | string  | null: false  |
+| last_name_kanji       | string  | null: false  |
+| first_name_kanji      | string  | null: false  |
+| last_name_kana        | string  | null: false  |
+| first_name_kana       | string  | null: false  |
+| birth_day             | date    | null: false  |
 
 ### Association
 - has_many :items
@@ -21,17 +21,17 @@
 
 
 ## items テーブル
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| title         | string     | null: false                    |
-| text          | text       |                                |
-| category_id   | integer    | null: false                    |
-| quality_id    | integer    | null: false                    |
-| postage_id    | integer    | null: false                    |
-| prefecture_id | integer    | null: false                    |
-| date_id       | integer    | null: false                    |
-| price         | integer    | null: false                    |
-| user          | references | null: false ,foreign_key: true |
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| title            | string     | null: false                    |
+| description      | text       | null: false                    |
+| category_id      | integer    | null: false                    |
+| quality_id       | integer    | null: false                    |
+| postage_id       | integer    | null: false                    |
+| prefecture_id    | integer    | null: false                    |
+| delivery_time_id | integer    | null: false                    |
+| price            | integer    | null: false                    |
+| user             | references | null: false ,foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -43,7 +43,7 @@
 ## comments テーブル
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
-| text    | text       |                                |
+| message | text       |                                |
 | user    | references | null: false, foreign_key: true |
 | item    | references | null: false, foreign_key: true |
 
