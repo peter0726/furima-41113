@@ -6,12 +6,11 @@
 | --------------------- | ------- | ----------- |
 | nickname              | string  | null: false |
 | email                 | string  | null: false |
-| password              | string  | null: false |
-| password_confirmation | string  | null: false |
-| lastname_kanji        | string  | null: false |
-| firstname_kanji       | string  | null: false |
-| lastname_kana         | string  | null: false |
-| firstname_kana        | string  | null: false |
+| encrypted_password    | string  | null: false |
+| last_name_kanji       | string  | null: false |
+| first_name_kanji      | string  | null: false |
+| last_name_kana        | string  | null: false |
+| first_name_kana       | string  | null: false |
 | birth_day             | date    | null: false |
 
 ### Association
@@ -22,18 +21,17 @@
 
 
 ## items テーブル
-| Column     | Type       | Options                        |
-| ---------  | ---------- | ------------------------------ |
-| image      | string     | null: false                    |
-| title      | string     | null: false                    |
-| text       | text       |                                |
-| category   | integer    | null: false                    |
-| quality    | integer    | null: false                    |
-| postage    | integer    | null: false                    |
-| prefecture | integer    | null: false                    |
-| day        | integer    | null: false                    |
-| price      | integer    | null: false                    |
-| user       | references | null: false ,foreign_key: true |
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| title         | string     | null: false                    |
+| text          | text       |                                |
+| category_id   | integer    | null: false                    |
+| quality_id    | integer    | null: false                    |
+| postage_id    | integer    | null: false                    |
+| prefecture_id | integer    | null: false                    |
+| date_id       | integer    | null: false                    |
+| price         | integer    | null: false                    |
+| user          | references | null: false ,foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -65,21 +63,21 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_one :informations
+- has_one :information
 
 
 
 ## informations テーブル
 
-| Column         | Type       | Options                       |
-| -------------- | ---------- | ----------------------------- |
-| postal_code    | string     | null: false                   |
-| prefecture     | integer    | null: false                   |
-| city           | string     | null: false                   |
-| house_number   | string     | null: false                   |
-| building_name  | string     |                               |
-| phone_number   | string     | null:false                    |
-| order          | references | null:false, foreign_key: true |
+| Column         | Type       | Options                        |
+| -------------- | ---------- | ------------------------------ |
+| postal_code    | string     | null: false                    |
+| prefecture_id  | integer    | null: false                    |
+| city           | string     | null: false                    |
+| house_number   | string     | null: false                    |
+| building_name  | string     |                                |
+| phone_number   | string     | null: false                    |
+| order          | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :order
