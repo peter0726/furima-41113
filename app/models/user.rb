@@ -15,7 +15,7 @@ class User < ApplicationRecord
          private
 
          def password_complexity
-           if password.present? && !password.match(/^(?=.*[a-zA-Z])(?=.*[0-9])/)
+           if password.present? && !password.match(/\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i)
              errors.add :password, "は英字と数字の両方を含める必要があります"
            end
          end
