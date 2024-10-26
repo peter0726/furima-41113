@@ -11,8 +11,8 @@ class Item < ApplicationRecord
 
   #空の投稿を保存できないようにする
   validates :image, presence: true
-  validates :title, presence: true
-  validates :description, presence: true
+  validates :title, presence: true, length: { maximum: 40 }
+  validates :description, presence: true, length: { maximum: 1000 }
   validates :category_id, presence: true
   validates :quality_id, presence: true
   validates :postage_id, presence: true
