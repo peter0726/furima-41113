@@ -5,6 +5,9 @@ class Item < ApplicationRecord
   belongs_to :postage
   belongs_to :prefecture
   belongs_to :delivery_time
+  belongs_to :user
+  has_one_attached :image
+
 
   #空の投稿を保存できないようにする
   validates :title, presence: true
@@ -23,10 +26,12 @@ class Item < ApplicationRecord
   validates :prefecture_id, numericality: { other_than: 1 , message: "can't be blank"} 
   validates :delivery_time_id, numericality: { other_than: 1 , message: "can't be blank"} 
 
+  #価格の設定を300円～999999円の範囲にする
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+  #価格の設定を半角の数字のみにする
+  validates :price, format: { with: /\A[0-9]+\z/, message: 'must be a number using half-width digits only' }
 
 
-  belongs_to :user
-  has_one_attached :image
 
 
 
