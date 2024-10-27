@@ -29,5 +29,5 @@ class Item < ApplicationRecord
   # 価格の設定を300円～999999円の範囲にする
   validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
   # 価格の設定を半角の数字のみにする
-  validates :price, format: { with: /\A[0-9]+\z/, message: 'must be a number using half-width digits only' }
+  validates :price, numericality: { only_integer: true, message: 'must be an integer' }
 end
