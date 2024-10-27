@@ -8,8 +8,7 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-
-  #空の投稿を保存できないようにする
+  # 空の投稿を保存できないようにする
   validates :image, presence: true
   validates :title, presence: true, length: { maximum: 40 }
   validates :description, presence: true, length: { maximum: 1000 }
@@ -20,20 +19,15 @@ class Item < ApplicationRecord
   validates :delivery_time_id, presence: true
   validates :price, presence: true
 
-  #ジャンルの選択が「---」の時は保存できないようにする
-  validates :category_id, numericality: { other_than: 1 , message: "can't be blank"} 
-  validates :quality_id, numericality: { other_than: 1 , message: "can't be blank"} 
-  validates :postage_id, numericality: { other_than: 1 , message: "can't be blank"} 
-  validates :prefecture_id, numericality: { other_than: 1 , message: "can't be blank"} 
-  validates :delivery_time_id, numericality: { other_than: 1 , message: "can't be blank"} 
+  # ジャンルの選択が「---」の時は保存できないようにする
+  validates :category_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :quality_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :postage_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :delivery_time_id, numericality: { other_than: 1, message: "can't be blank" }
 
-  #価格の設定を300円～999999円の範囲にする
+  # 価格の設定を300円～999999円の範囲にする
   validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
-  #価格の設定を半角の数字のみにする
+  # 価格の設定を半角の数字のみにする
   validates :price, format: { with: /\A[0-9]+\z/, message: 'must be a number using half-width digits only' }
-
-
-
-
-
 end

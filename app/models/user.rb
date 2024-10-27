@@ -9,19 +9,15 @@ class User < ApplicationRecord
   validates :first_name_kana, presence: true, format: { with: /\A[ァ-ヶー]+\z/, message: 'はカタカナで入力してください' }
   validates :birth_day, presence: true
 
-
   validate :password_complexity
 
-
   has_many :items
-
 
   private
 
   def password_complexity
-    if password.present? && !password.match(/\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i)
-      errors.add :password, "は英字と数字の両方を含める必要があります"
-    end
-  end
+    return unless password.present? && !password.match(/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i)
 
+    errors.add :password, 'は英字と数字の両方を含める必要があります'
+  end
 end

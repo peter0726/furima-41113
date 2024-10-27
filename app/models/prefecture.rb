@@ -1,8 +1,6 @@
 class Prefecture < ActiveHash::Base
-
   include ActiveHash::Associations
   has_one :items
-
 
   self.data = [
     { id: 1, name: '---' },
@@ -54,10 +52,4 @@ class Prefecture < ActiveHash::Base
     { id: 47, name: '鹿児島県' },
     { id: 48, name: '沖縄県' }
   ]
-
-
-
-
-
 end
-
