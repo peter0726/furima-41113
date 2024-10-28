@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, except: [:index, :new, :create]
   before_action :authenticate_user!, only: [:new]
-  before_action :move_to_index, except: [:index, :show, :new , :create]
+  before_action :move_to_index, except: [:index, :show, :new, :create]
 
   def index
     @items = Item.order(created_at: :desc)
@@ -21,25 +21,18 @@ class ItemsController < ApplicationController
   end
 
   def show
-
   end
 
   def edit
-
   end
 
   def update
-    if 
-      @item.update(item_params)
+    if @item.update(item_params)
       redirect_to item_path
     else
       render :edit, status: :unprocessable_entity
     end
-
-
   end
-
-
 
   private
 
@@ -62,6 +55,4 @@ class ItemsController < ApplicationController
       redirect_to user_session_path
     end
   end
-
-
 end
