@@ -1,4 +1,5 @@
 class Order < ApplicationRecord
+  aftr_accessor :token
   belongs_to :items
   belongs_to :users
 

@@ -1,5 +1,5 @@
 const pay = () => {
-  const payjp = Payjp('pk_test_***********************')// PAY.JPテスト公開鍵
+  const payjp = Payjp('*******************')// PAY.JPテスト公開鍵
 
   const elements = payjp.elements();
   const numberElement = elements.create('cardNumber');
