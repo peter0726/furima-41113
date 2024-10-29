@@ -14,3 +14,9 @@
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym "RESTful"
 # end
+
+
+#informationの複数形がinformationsとならないため、単数形・複数形のどちらでも使われるべきと認識するための記述
+ActiveSupport::Inflector.inflections(:en) do |inflect|
+  inflect.uncountable %w( information )
+end
