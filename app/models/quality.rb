@@ -1,6 +1,6 @@
 class Quality < ActiveHash::Base
   include ActiveHash::Associations
-  has_one :items
+  has_one :item
 
   self.data = [
     { id: 1, name: '---' },
