@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :delivery_time
   belongs_to :user
+  has_one :order
   has_one_attached :image
 
   # 空の投稿を保存できないようにする
