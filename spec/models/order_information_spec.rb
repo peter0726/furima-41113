@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe OrderInformation, type: :model do
   before do
-    @order_information = FactoryBot.build(:order_information)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
+    @order_information = FactoryBot.build(:order_information, item_id: @item.id, user_id: @user.id )
   end
 
   describe '商品の購入' do
@@ -17,10 +19,20 @@ RSpec.describe OrderInformation, type: :model do
     end
 
     context '購入できない場合' do
-      it 'tokenがない場合は登録できないこと' do
+      it 'tokenが空の場合は登録できないこと' do
         @order_information.token = ''
         @order_information.valid?
         expect(@order_information.errors.full_messages).to include "Token can't be blank"
+      end
+      it 'user_idが空の場合は登録できないこと' do
+        @order_information.user_id = ''
+        @order_information.valid?
+        expect(@order_information.errors.full_messages).to include "User can't be blank"
+      end
+      it 'item_idが空の場合は登録できないこと' do
+        @order_information.item_id = ''
+        @order_information.valid?
+        expect(@order_information.errors.full_messages).to include "Item can't be blank"
       end
       it 'postal_codeがない場合は登録できないこと' do
         @order_information.postal_code = ''
@@ -47,8 +59,8 @@ RSpec.describe OrderInformation, type: :model do
         @order_information.valid?
         expect(@order_information.errors.full_messages).to include 'Postal code is invalid. Include hyphen(-)'
       end
-      it 'prefecture_idがない場合は登録できないこと' do
-        @order_information.prefecture_id = ''
+      it 'prefecture_idが--場合は登録できないこと' do
+        @order_information.prefecture_id = 1
         @order_information.valid?
         expect(@order_information.errors.full_messages).to include "Prefecture can't be blank"
       end
