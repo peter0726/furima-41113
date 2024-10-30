@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe OrderInformation, type: :model do
-  
   before do
     @order_information = FactoryBot.build(:order_information)
   end
@@ -31,22 +30,22 @@ RSpec.describe OrderInformation, type: :model do
       it 'postal_codeにハイフンがないと登録できないこと' do
         @order_information.postal_code = '1234567'
         @order_information.valid?
-        expect(@order_information.errors.full_messages).to include "Postal code is invalid. Include hyphen(-)"
+        expect(@order_information.errors.full_messages).to include 'Postal code is invalid. Include hyphen(-)'
       end
       it 'postal_codeが全角数字だと登録できないこと' do
         @order_information.postal_code = '１２３-４５６７'
         @order_information.valid?
-        expect(@order_information.errors.full_messages).to include "Postal code is invalid. Include hyphen(-)"
+        expect(@order_information.errors.full_messages).to include 'Postal code is invalid. Include hyphen(-)'
       end
       it 'postal_codeが3桁ハイフン4桁でない登録できないこと' do
         @order_information.postal_code = '1234-567'
         @order_information.valid?
-        expect(@order_information.errors.full_messages).to include "Postal code is invalid. Include hyphen(-)"
+        expect(@order_information.errors.full_messages).to include 'Postal code is invalid. Include hyphen(-)'
       end
       it 'postal_codeが数字でない登録できないこと' do
         @order_information.postal_code = 'abc-defg'
         @order_information.valid?
-        expect(@order_information.errors.full_messages).to include "Postal code is invalid. Include hyphen(-)"
+        expect(@order_information.errors.full_messages).to include 'Postal code is invalid. Include hyphen(-)'
       end
       it 'prefecture_idがない場合は登録できないこと' do
         @order_information.prefecture_id = ''
@@ -72,34 +71,28 @@ RSpec.describe OrderInformation, type: :model do
       it 'phone_numberが半角でないと登録できないこと' do
         @order_information.phone_number = '０９０１２３４５６７８'
         @order_information.valid?
-        expect(@order_information.errors.full_messages).to include "Phone number must be 10 to 11 digits"
+        expect(@order_information.errors.full_messages).to include 'Phone number must be 10 to 11 digits'
       end
       it 'phone_numberが数字でないと登録できないこと' do
         @order_information.phone_number = 'aaaaaaaaaaa'
         @order_information.valid?
-        expect(@order_information.errors.full_messages).to include "Phone number must be 10 to 11 digits"
+        expect(@order_information.errors.full_messages).to include 'Phone number must be 10 to 11 digits'
       end
       it 'phone_numberにハイフンがあると登録できないこと' do
         @order_information.phone_number = '090-1234-5678'
         @order_information.valid?
-        expect(@order_information.errors.full_messages).to include "Phone number must be 10 to 11 digits"
+        expect(@order_information.errors.full_messages).to include 'Phone number must be 10 to 11 digits'
       end
       it 'phone_numberが9字以下だと登録できないこと' do
         @order_information.phone_number = '090123456'
         @order_information.valid?
-        expect(@order_information.errors.full_messages).to include "Phone number must be 10 to 11 digits"
+        expect(@order_information.errors.full_messages).to include 'Phone number must be 10 to 11 digits'
       end
       it 'phone_numberが12字以下だと登録できないこと' do
         @order_information.phone_number = '090123456789'
         @order_information.valid?
-        expect(@order_information.errors.full_messages).to include "Phone number must be 10 to 11 digits"
+        expect(@order_information.errors.full_messages).to include 'Phone number must be 10 to 11 digits'
       end
-
     end
   end
-
-
-
-
-
 end
