@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
 
+
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @order_information = OrderInformation.new
@@ -36,5 +37,8 @@ class OrdersController < ApplicationController
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
   end
+
+
+
 
 end
