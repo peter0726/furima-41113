@@ -4,7 +4,7 @@ RSpec.describe OrderInformation, type: :model do
   before do
     @user = FactoryBot.create(:user)
     @item = FactoryBot.create(:item)
-    @order_information = FactoryBot.build(:order_information, item_id: @item.id, user_id: @user.id )
+    @order_information = FactoryBot.build(:order_information, item_id: @item.id, user_id: @user.id)
   end
 
   describe '商品の購入' do
