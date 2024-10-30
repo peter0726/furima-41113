@@ -1,12 +1,10 @@
 class OrdersController < ApplicationController
-  before_action :set_item
   before_action :authenticate_user!
   before_action :move_to_root_path
 
   def index
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     @order_information = OrderInformation.new
-    @user = User.new
   end
 
   def create
@@ -29,9 +27,6 @@ class OrdersController < ApplicationController
     )
   end
 
-  def set_item
-    @item = Item.find(params[:item_id])
-  end
 
   def pay_item
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
